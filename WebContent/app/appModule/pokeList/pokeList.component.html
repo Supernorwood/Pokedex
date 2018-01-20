@@ -1,0 +1,29 @@
+<form ng-hide="vm.selected">
+	<input type="text" ng-modle="poke.name" placeholder="New Pokemon"/>
+	<input type="submit" value="Add Poke" ng-click="vm.addPoke(poke); poke = {};" />
+	
+</form>
+<div>
+<form>
+	<input type="text" ng-modle="poke.pokeId" placeholder="New Pokemon"/>
+	<input type="text" ng-modle="poke.height" placeholder="New Pokemon"/>
+	<input type="text" ng-modle="poke.weight" placeholder="New Pokemon"/>
+	<input type="text" ng-modle="poke.name" placeholder="New Pokemon"/>
+	<input type="submit" value="Create Pokemon" ng-click="vm.newPokemon(poke); poke = {};" />
+	
+</form>
+</div>
+
+<div>
+<span ng-repeat="type in vm.types" ng-click="vm.selectedType = type">{{type}} | </span>
+</div>
+
+<div ng-repeat="poke in vm.pokemons | orderBy: 'pokeId' | pokeType: vm.selectedType">
+<h3>{{poke.pokeId}}</h3>
+<div><i>{{poke.name}}</i></div>
+<div><img src='{{poke.img}}'/></div>
+<div><i>{{poke.height | number:2}}</i></div>
+<div><i>{{poke.weight | number:2}}</i></div>
+<span class="column"> <button ng-click="vm.deletePoke(poke.pokeId)">DELETE</button>	</span>
+</div>
+
